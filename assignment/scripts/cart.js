@@ -64,6 +64,8 @@ console.log(`${myBasket.name}, removed item:`, myBasket.removeItem('Ham'));
 
 myBasket.listItems();
 
+console.log('Mybasket is full:',isFull(myBasket));
+
 myBasket.empty();
 
 myBasket.listItems();
