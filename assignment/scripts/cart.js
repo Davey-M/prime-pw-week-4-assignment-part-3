@@ -1,13 +1,16 @@
 console.log('***** Cart Functions *****');
 // Make sure to test all functions here in the JS file!
 // We want to see how you are testing your code!!!
-let basket_ids = [];
+let baskets = {};
+let latest_index = 0;
 
 class Basket {
-    constructor(name) {
+    constructor(name, is_large_basket) {
         this.name = name ?? 'Unnamed Basket';
         this.basket = [];
-        this.maxItems = 5;
+        this.maxItems = is_large_basket ? 10: 5;
+        baskets[latest_index] = this;
+        latest_index++;
     }
 
     addItem(item) {
@@ -16,7 +19,7 @@ class Basket {
     }
 
     listItems() {
-        if (this.basket == []) {
+        if (this.basket.length === 0) {
             console.log(`There are no items in ${this.name}...`);
             return
         }
@@ -29,10 +32,12 @@ class Basket {
 
     empty() {
         this.basket = [];
+        console.log(`Emptying ${this.name}...`)
     }
 }
 
 let myBasket = new Basket('My Basket')
+let largeBasket = new Basket('Large Basket', true);
 
 myBasket.addItem('Ham');
 myBasket.addItem('Bread');
