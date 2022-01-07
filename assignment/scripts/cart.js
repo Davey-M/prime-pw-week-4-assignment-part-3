@@ -14,6 +14,9 @@ class Basket {
     }
 
     addItem(item) {
+        if (isFull(this)) {
+            console.log(`Cannot add ${item} because ${this.name} if full`);
+        }
         this.basket.push(item);
         console.log(`Adding ${item} to ${this.name}`);
     }
@@ -34,6 +37,10 @@ class Basket {
         this.basket = [];
         console.log(`Emptying ${this.name}...`)
     }
+}
+
+function isFull(basket) {
+    return basket.basket.length >= basket.maxItems;
 }
 
 let myBasket = new Basket('My Basket')
