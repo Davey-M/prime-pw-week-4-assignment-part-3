@@ -16,9 +16,11 @@ class Basket {
     addItem(item) {
         if (isFull(this)) {
             console.log(`Cannot add ${item} because ${this.name} if full`);
+            return false;
         }
         this.basket.push(item);
         console.log(`Adding ${item} to ${this.name}`);
+        return true;
     }
 
     listItems() {
@@ -31,6 +33,14 @@ class Basket {
             let itemIndex = this.basket.indexOf(item) + 1;
             console.log(`${this.name}, Item: ${itemIndex}: ${item}`)
         }
+    }
+
+    removeItem(item) {
+        let index = this.basket.indexOf(item);
+        if (index !== -1) {
+            return this.basket.splice(index, 1);
+        }
+        return null;
     }
 
     empty() {
@@ -49,6 +59,8 @@ let largeBasket = new Basket('Large Basket', true);
 myBasket.addItem('Ham');
 myBasket.addItem('Bread');
 myBasket.addItem('Cheese');
+
+console.log(`${myBasket.name}, removed item:`, myBasket.removeItem('Ham'));
 
 myBasket.listItems();
 
